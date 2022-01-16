@@ -1,4 +1,4 @@
-package com.project.planer.Data;
+package com.project.planer.backend.data;
 
 import java.util.Objects;
 

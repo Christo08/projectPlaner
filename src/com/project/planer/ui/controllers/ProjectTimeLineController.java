@@ -1,2 +1,4 @@
-package com.project.planer.ui.controllers;public class ProjectTimeLineController {
+package com.project.planer.ui.controllers;
+
+public class ProjectTimeLineController {
 }

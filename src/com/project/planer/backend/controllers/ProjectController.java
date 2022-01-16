@@ -1,13 +1,13 @@
-package com.project.planer.Controllers;
-
-import com.project.planer.Data.Client;
-import com.project.planer.Data.Project;
-import com.project.planer.Data.Status;
+package com.project.planer.backend.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.project.planer.backend.data.Client;
+import com.project.planer.backend.data.Project;
+import com.project.planer.backend.data.Status;
 
 public class ProjectController {
     private List<Project> projects;
@@ -64,7 +64,7 @@ public class ProjectController {
 
         for (Project project: projects) {
             int projectID = project.getProjectID();
-            
+
             projectData += project+"\n";
             clientData += projectID+","+ getClient(projectID)+"\n";
             for (Status status: getStatus(projectID)){
