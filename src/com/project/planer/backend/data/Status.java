@@ -1,11 +1,18 @@
 package com.project.planer.backend.data;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "status")
 public class Status {
 
     private String name;
     private String description;
     private long startTime;
     private long stopTime;
+
+    public Status() {
+    }
 
     public Status(String name, String description, long startTime, long stopTime) {
         this.name = name;
@@ -14,6 +21,7 @@ public class Status {
         this.stopTime = stopTime;
     }
 
+    @XmlElement(name = "name")
     public String getName() {
         return name;
     }
@@ -22,6 +30,7 @@ public class Status {
         this.name = name;
     }
 
+    @XmlElement(name = "description")
     public String getDescription() {
         return description;
     }
@@ -30,6 +39,7 @@ public class Status {
         this.description = description;
     }
 
+    @XmlElement(name = "startTime")
     public long getStartTime() {
         return startTime;
     }
@@ -38,6 +48,7 @@ public class Status {
         this.startTime = startTime;
     }
 
+    @XmlElement(name = "stopTime")
     public long getStopTime() {
         return stopTime;
     }
