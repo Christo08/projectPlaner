@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<projects>
+    <project id="-2032052937">
+        <client>
+            <address>123 Street 
+ Lynnwood 
+ Pretoria 
+ South Africa</address>
+            <companyName>Jan's Plaas</companyName>
+            <contactNumber>012 345 6789</contactNumber>
+            <name>Jan</name>
+            <surname>Van Wyk</surname>
+        </client>
+        <description>Just so text. Just so text. Just so text. </description>
+        <name>Jan's Plaas</name>
+        <startTimeStamp>1579179456</startTimeStamp>
+        <statuses>
+            <description>The start of the project.</description>
+            <name>Start</name>
+            <startTime>1579179456</startTime>
+            <stopTime>1610801856</stopTime>
+        </statuses>
+        <statuses>
+            <description>The mid of the project.</description>
+            <name>Mid</name>
+            <startTime>1610801856</startTime>
+            <stopTime>1637067456</stopTime>
+        </statuses>
+        <statuses>
+            <description>The stop of the project.</description>
+            <name>Stop</name>
+            <startTime>1637067456</startTime>
+            <stopTime>1642338307</stopTime>
+        </statuses>
+        <stopTimeStamp>1642338307</stopTimeStamp>
+    </project>
+</projects>
