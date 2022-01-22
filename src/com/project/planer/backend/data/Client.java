@@ -8,12 +8,12 @@ import java.util.Objects;
 @XmlRootElement(name = "client")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Client{
-    private String businessName;
-    private String ownerNameSurname;
-    private String contactPersonsNameSurname;
-    private String contactPhoneNumber;
-    private String email;
-    private String addressGPSCoordinates;
+    private String businessName = "";
+    private String ownerNameSurname = "";
+    private String contactPersonsNameSurname = "";
+    private String contactPhoneNumber = "";
+    private String email = "";
+    private String addressGPSCoordinates = "";
 
     public Client() {
     }

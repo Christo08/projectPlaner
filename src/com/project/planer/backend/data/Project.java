@@ -16,27 +16,27 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Project{
     @XmlTransient
-    private String id;
+    private String id ="";
 
-    private boolean hasAPVPlane;
-    private double pvPlaneSize;
+    private boolean hasAPVPlane = false;
+    private double pvPlaneSize = 0;
 
-    private boolean hasAPrivateGrid;
-    private double privateGridSize;
+    private boolean hasAPrivateGrid = false;
+    private double privateGridSize = 0;
 
-    private boolean hasAGenerator;
-    private double generatorSize;
+    private boolean hasAGenerator = false;
+    private double generatorSize = 0;
 
-    private boolean hasABatteryBlank;
-    private double batteryBlankSize;
+    private boolean hasABatteryBlank = false;
+    private double batteryBlankSize = 0;
 
-    private boolean needsIntegrationOfPVPlaneAndPrivateGrid;
-    private boolean needsIntegrationOfPVPlaneAndGenerator;
-    private boolean needsIntegrationOfPVPlaneAndBatteryBlank;
+    private boolean needsIntegrationOfPVPlaneAndPrivateGrid = false;
+    private boolean needsIntegrationOfPVPlaneAndGenerator = false;
+    private boolean needsIntegrationOfPVPlaneAndBatteryBlank = false;
 
-    private long startDate;
-    private long estimatedStopDate;
-    private int timeFrame;
+    private long startDate = 0;
+    private long estimatedStopDate = 0;
+    private int timeFrame = 0;
 
     private Client client;
     private FinancialIndicators financialIndicators;

@@ -6,7 +6,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,31 +40,26 @@ public class XmlFileController {
         }
     }
 
-    public void createNewProjectFile(String projectID){
-        File newFile = new File(absolutePathToDataFolder+"\\"+projectID +".xml");
-        projectsFiles.put(newFile.getName(), newFile);
-        newFile.exists();
+    public void saveProjects(List<Project> projects) throws JAXBException {
+        for (Project project:projects) {
+            File newFile = new File(absolutePathToDataFolder+"\\"+project.getId() +".xml");
+            projectsMarshaller.marshal(project, newFile);
+        }
     }
 
-    public void saveProjects(List<Project> projects) {
-        projects.parallelStream().forEach(project -> {
-            try {
-                projectsMarshaller.marshal(project, projectsFiles.get(project.getId()+".xml"));
-            } catch (JAXBException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    public List<Project> loadProjects(){
+    public List<Project> loadProjects() throws JAXBException, FileNotFoundException {
         List<Project> projects = new ArrayList<>();
-        projectsFiles.values().parallelStream().forEach(project -> {
-            try {
-                projects.add((Project) projectsContext.createUnmarshaller().unmarshal(project));
-            } catch (JAXBException e) {
-                e.printStackTrace();
-            }
-        });
+
+        for (File projectFile : projectsFiles.values())
+        {
+            projects.add((Project) projectsContext.createUnmarshaller().unmarshal(projectFile));
+            PrintWriter writer = new PrintWriter(projectFile);
+            writer.print("");
+            writer.close();
+        }
+
+        projectsFiles.clear();
+
         return projects;
     }
 }

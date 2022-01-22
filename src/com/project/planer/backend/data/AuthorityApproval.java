@@ -11,24 +11,24 @@ import java.time.*;
 @XmlAccessorType(XmlAccessType.FIELD)
 
 public class AuthorityApproval {
-    private long cocIssieDate;
-    private String cocCertificateNumber;
+    private long cocIssieDate = 0;
+    private String cocCertificateNumber = "";
 
-    private long nrs097IssieDate;
-    private String nrs097CertificateNumber;
+    private long nrs097IssieDate = 0;
+    private String nrs097CertificateNumber = "";
 
-    private String networkProvide;
+    private String networkProvide = "";
 
-    private long dateOfApplicationHandedIn;
-    private long dateOfApplicationReturned;
+    private long dateOfApplicationHandedIn = 0;
+    private long dateOfApplicationReturned = 0;
 
-    private long dateOfPaymentReceived;
-    private long expectedDateOfNetworkProvideApproval;
-    private long actualDateOfNetworkProvideApproval;
+    private long dateOfPaymentReceived = 0;
+    private long expectedDateOfNetworkProvideApproval = 0;
+    private long actualDateOfNetworkProvideApproval = 0;
 
-    private long dateOfNERSAApplication;
-    private long expectedDateOfNERSAApproval;
-    private long actualDateOfNERSAApproval;
+    private long dateOfNERSAApplication = 0;
+    private long expectedDateOfNERSAApproval = 0;
+    private long actualDateOfNERSAApproval = 0;
 
     public AuthorityApproval() {
     }
