@@ -1,72 +1,77 @@
 package com.project.planer.backend.data;
 
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Objects;
 
 @XmlRootElement(name = "client")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Client{
-    private String name;
-    private String surname;
-    private String contactNumber;
-    private String companyName;
-    private String address;
+    private String businessName;
+    private String ownerNameSurname;
+    private String contactPersonsNameSurname;
+    private String contactPhoneNumber;
+    private String email;
+    private String addressGPSCoordinates;
 
     public Client() {
     }
 
-    public Client(String name, String surname, String contactNumber, String companyName, String address) {
-        this.name = name;
-        this.surname = surname;
-        this.contactNumber = contactNumber;
-        this.companyName = companyName;
-        this.address = address;
+    public Client(String businessName, String ownerNameSurname, String contactPersonsNameSurname, String contactPhoneNumber, String email, String addressGPSCoordinates) {
+        this.businessName = businessName;
+        this.ownerNameSurname = ownerNameSurname;
+        this.contactPersonsNameSurname = contactPersonsNameSurname;
+        this.contactPhoneNumber = contactPhoneNumber;
+        this.email = email;
+        this.addressGPSCoordinates = addressGPSCoordinates;
     }
 
-    @XmlElement(name = "name")
-    public String getName() {
-        return name;
+    public String getBusinessName() {
+        return businessName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
     }
 
-    @XmlElement(name = "surname")
-    public String getSurname() {
-        return surname;
+    public String getOwnerNameSurname() {
+        return ownerNameSurname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setOwnerNameSurname(String ownerNameSurname) {
+        this.ownerNameSurname = ownerNameSurname;
     }
 
-    @XmlElement(name = "contactNumber")
-    public String getContactNumber() {
-        return contactNumber;
+    public String getContactPersonsNameSurname() {
+        return contactPersonsNameSurname;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setContactPersonsNameSurname(String contactPersonsNameSurname) {
+        this.contactPersonsNameSurname = contactPersonsNameSurname;
     }
 
-    @XmlElement(name = "companyName")
-    public String getCompanyName() {
-        return companyName;
+    public String getContactPhoneNumber() {
+        return contactPhoneNumber;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setContactPhoneNumber(String contactPhoneNumber) {
+        this.contactPhoneNumber = contactPhoneNumber;
     }
 
-    @XmlElement(name = "address")
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddressGPSCoordinates() {
+        return addressGPSCoordinates;
+    }
+
+    public void setAddressGPSCoordinates(String addressGPSCoordinates) {
+        this.addressGPSCoordinates = addressGPSCoordinates;
     }
 }

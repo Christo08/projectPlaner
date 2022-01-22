@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project id="e326675cf568aed3c0d35fc345170d903e93677a5523ae172054cbabfa680f72">
+    <hasAPVPlane>false</hasAPVPlane>
+    <pvPlaneSize>0.0</pvPlaneSize>
+    <hasAPrivateGrid>false</hasAPrivateGrid>
+    <privateGridSize>0.0</privateGridSize>
+    <hasAGenerator>false</hasAGenerator>
+    <generatorSize>0.0</generatorSize>
+    <hasABatteryBlank>false</hasABatteryBlank>
+    <batteryBlankSize>0.0</batteryBlankSize>
+    <needsIntegrationOfPVPlaneAndPrivateGrid>false</needsIntegrationOfPVPlaneAndPrivateGrid>
+    <needsIntegrationOfPVPlaneAndGenerator>false</needsIntegrationOfPVPlaneAndGenerator>
+    <needsIntegrationOfPVPlaneAndBatteryBlank>false</needsIntegrationOfPVPlaneAndBatteryBlank>
+    <startDate>1642802400000</startDate>
+    <estimatedStopDate>1674338400000</estimatedStopDate>
+    <timeFrame>12</timeFrame>
+    <client>
+        <businessName>Die plaas</businessName>
+        <ownerNameSurname>Jan De Wet</ownerNameSurname>
+        <contactPersonsNameSurname>Jan De Wet</contactPersonsNameSurname>
+        <contactPhoneNumber>012 345 6789</contactPhoneNumber>
+        <email>JanDeWet@DiePlass.com</email>
+        <addressGPSCoordinates>123 street,
+ Lynnwood,
+ Pretoria,
+ Gauteng,
+ South Africa</addressGPSCoordinates>
+    </client>
+    <financialIndicators>
+        <budgetCost>500000.0</budgetCost>
+        <actualCost>0.0</actualCost>
+        <sellPrice>1000000.0</sellPrice>
+        <projectedProfit>500000.0</projectedProfit>
+        <actualProfit>0.0</actualProfit>
+    </financialIndicators>
+    <authorityApproval>
+        <cocIssieDate>0</cocIssieDate>
+        <nrs097IssieDate>0</nrs097IssieDate>
+        <networkProvide>Eskom</networkProvide>
+        <dateOfApplicationHandedIn>0</dateOfApplicationHandedIn>
+        <dateOfApplicationReturned>0</dateOfApplicationReturned>
+        <dateOfPaymentReceived>0</dateOfPaymentReceived>
+        <expectedDateOfNetworkProvideApproval>0</expectedDateOfNetworkProvideApproval>
+        <actualDateOfNetworkProvideApproval>0</actualDateOfNetworkProvideApproval>
+        <dateOfNERSAApplication>0</dateOfNERSAApplication>
+        <expectedDateOfNERSAApproval>0</expectedDateOfNERSAApproval>
+        <actualDateOfNERSAApproval>0</actualDateOfNERSAApproval>
+    </authorityApproval>
+    <statuses>
+        <name>testing</name>
+        <description></description>
+        <startDate>1642802400000</startDate>
+        <stopDate>1674338400000</stopDate>
+    </statuses>
+</project>

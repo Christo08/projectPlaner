@@ -1,116 +1,301 @@
 package com.project.planer.backend.data;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import com.project.planer.backend.controllers.ProjectController;
+
+import javax.xml.bind.annotation.*;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement(name = "project")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Project{
+    @XmlTransient
+    private String id;
 
-    private int id;
-    private String name;
-    private String description;
-    private long startTimeStamp;
-    private long stopTimeStamp;
+    private boolean hasAPVPlane;
+    private double pvPlaneSize;
+
+    private boolean hasAPrivateGrid;
+    private double privateGridSize;
+
+    private boolean hasAGenerator;
+    private double generatorSize;
+
+    private boolean hasABatteryBlank;
+    private double batteryBlankSize;
+
+    private boolean needsIntegrationOfPVPlaneAndPrivateGrid;
+    private boolean needsIntegrationOfPVPlaneAndGenerator;
+    private boolean needsIntegrationOfPVPlaneAndBatteryBlank;
+
+    private long startDate;
+    private long estimatedStopDate;
+    private int timeFrame;
+
     private Client client;
+    private FinancialIndicators financialIndicators;
+    private AuthorityApproval authorityApproval;
     private List<Status> statuses;
 
     public Project(){
 
     }
 
-    public Project(String name, String description, long startTimeStamp, long stopTimeStamp, Client client) {
-        this.name = name;
-        this.description = description.replaceAll("\n"," ");
-        this.startTimeStamp = startTimeStamp;
-        this.stopTimeStamp = stopTimeStamp;
-        this.id = hashCode();
+    public Project(long startDate, int timeFrame, Client client,
+                   FinancialIndicators financialIndicators, AuthorityApproval authorityApproval) {
+        this.startDate = startDate;
+        this.timeFrame = timeFrame;
+        this.estimatedStopDate = this.startDate+(timeFrame *2628000000L);
         this.client = client;
-        this.statuses = new ArrayList<>();
+        this.financialIndicators = financialIndicators;
+        this.authorityApproval = authorityApproval;
+        id = createID();
     }
 
-    public int getId() {
+    public Project(LocalDate startDate, int timeFrame, Client client,
+                   FinancialIndicators financialIndicators, AuthorityApproval authorityApproval) {
+        this(ProjectController.localDateToTimestamp(startDate),timeFrame,client,financialIndicators,authorityApproval);
+    }
+
+    public Project(boolean hasAPVPlane, double pvPlaneSize, boolean hasAPrivateGrid,
+                   double privateGridSize, boolean hasAGenerator, double generatorSize,
+                   boolean hasABatteryBlank, double batteryBlankSize, boolean needsIntegrationOfPVPlaneAndPrivateGrid,
+                   boolean needsIntegrationOfPVPlaneAndGenerator, boolean needsIntegrationOfPVPlaneAndBatteryBlank, long startDate,
+                   int timeFrame, Client client, FinancialIndicators financialIndicators, AuthorityApproval authorityApproval) {
+        this(startDate, timeFrame, client, financialIndicators, authorityApproval);
+        this.hasAPVPlane = hasAPVPlane;
+        this.pvPlaneSize = pvPlaneSize;
+        this.hasAPrivateGrid = hasAPrivateGrid;
+        this.privateGridSize = privateGridSize;
+        this.hasAGenerator = hasAGenerator;
+        this.generatorSize = generatorSize;
+        this.hasABatteryBlank = hasABatteryBlank;
+        this.batteryBlankSize = batteryBlankSize;
+        this.needsIntegrationOfPVPlaneAndPrivateGrid = needsIntegrationOfPVPlaneAndPrivateGrid;
+        this.needsIntegrationOfPVPlaneAndGenerator = needsIntegrationOfPVPlaneAndGenerator;
+        this.needsIntegrationOfPVPlaneAndBatteryBlank = needsIntegrationOfPVPlaneAndBatteryBlank;
+
+    }
+
+    public Project(boolean hasAPVPlane, double pvPlaneSize, boolean hasAPrivateGrid,
+                   double privateGridSize, boolean hasAGenerator, double generatorSize,
+                   boolean hasABatteryBlank, double batteryBlankSize, boolean needsIntegrationOfPVPlaneAndPrivateGrid,
+                   boolean needsIntegrationOfPVPlaneAndGenerator, boolean needsIntegrationOfPVPlaneAndBatteryBlank, LocalDate startDate,
+                   int timeFrame, Client client, FinancialIndicators financialIndicators, AuthorityApproval authorityApproval) {
+        this(hasAPVPlane,pvPlaneSize,hasAPrivateGrid,privateGridSize,hasAGenerator,
+                generatorSize,hasABatteryBlank,batteryBlankSize, needsIntegrationOfPVPlaneAndPrivateGrid,needsIntegrationOfPVPlaneAndGenerator,needsIntegrationOfPVPlaneAndBatteryBlank,
+                ProjectController.localDateToTimestamp(startDate), timeFrame,client,financialIndicators,authorityApproval);
+
+    }
+
+    public String getId() {
         return id;
     }
 
     @XmlAttribute
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public boolean isHasAPVPlane() {
+        return hasAPVPlane;
     }
 
-    @XmlElement(name = "name")
-    public void setName(String name) {
-        this.name = name;
+    public void setHasAPVPlane(boolean hasAPVPlane) {
+        this.hasAPVPlane = hasAPVPlane;
     }
 
-    public String getDescription() {
-        return description;
+    public double getPvPlaneSize() {
+        return pvPlaneSize;
     }
 
-    @XmlElement(name = "description")
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPvPlaneSize(double pvPlaneSize) {
+        this.pvPlaneSize = pvPlaneSize;
     }
 
-    public long getStartTimeStamp() {
-        return startTimeStamp;
+    public boolean isHasAPrivateGrid() {
+        return hasAPrivateGrid;
     }
 
-    @XmlElement(name = "startTimeStamp")
-    public void setStartTimeStamp(long startTimeStamp) {
-        this.startTimeStamp = startTimeStamp;
+    public void setHasAPrivateGrid(boolean hasAPrivateGrid) {
+        this.hasAPrivateGrid = hasAPrivateGrid;
     }
 
-    public long getStopTimeStamp() {
-        return stopTimeStamp;
+    public double getPrivateGridSize() {
+        return privateGridSize;
     }
 
-    @XmlElement(name = "stopTimeStamp")
-    public void setStopTimeStamp(long stopTimeStamp) {
-        this.stopTimeStamp = stopTimeStamp;
+    public void setPrivateGridSize(double privateGridSize) {
+        this.privateGridSize = privateGridSize;
+    }
+
+    public boolean isHasAGenerator() {
+        return hasAGenerator;
+    }
+
+    public void setHasAGenerator(boolean hasAGenerator) {
+        this.hasAGenerator = hasAGenerator;
+    }
+
+    public double getGeneratorSize() {
+        return generatorSize;
+    }
+
+    public void setGeneratorSize(double generatorSize) {
+        this.generatorSize = generatorSize;
+    }
+
+    public boolean isHasABatteryBlank() {
+        return hasABatteryBlank;
+    }
+
+    public void setHasABatteryBlank(boolean hasABatteryBlank) {
+        this.hasABatteryBlank = hasABatteryBlank;
+    }
+
+    public double getBatteryBlankSize() {
+        return batteryBlankSize;
+    }
+
+    public void setBatteryBlankSize(double batteryBlankSize) {
+        this.batteryBlankSize = batteryBlankSize;
+    }
+
+    public boolean isNeedsIntegrationOfPVPlaneAndPrivateGrid() {
+        return needsIntegrationOfPVPlaneAndPrivateGrid;
+    }
+
+    public void setNeedsIntegrationOfPVPlaneAndPrivateGrid(boolean needsIntegrationOfPVPlaneAndPrivateGrid) {
+        this.needsIntegrationOfPVPlaneAndPrivateGrid = needsIntegrationOfPVPlaneAndPrivateGrid;
+    }
+
+    public boolean isNeedsIntegrationOfPVPlaneAndGenerator() {
+        return needsIntegrationOfPVPlaneAndGenerator;
+    }
+
+    public void setNeedsIntegrationOfPVPlaneAndGenerator(boolean needsIntegrationOfPVPlaneAndGenerator) {
+        this.needsIntegrationOfPVPlaneAndGenerator = needsIntegrationOfPVPlaneAndGenerator;
+    }
+
+    public boolean isNeedsIntegrationOfPVPlaneAndBatteryBlank() {
+        return needsIntegrationOfPVPlaneAndBatteryBlank;
+    }
+
+    public void setNeedsIntegrationOfPVPlaneAndBatteryBlank(boolean needsIntegrationOfPVPlaneAndBatteryBlank) {
+        this.needsIntegrationOfPVPlaneAndBatteryBlank = needsIntegrationOfPVPlaneAndBatteryBlank;
+    }
+
+    public long getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(long startDate) {
+        this.startDate = startDate;
+        this.estimatedStopDate = this.startDate+(timeFrame *2628000000L);
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = ProjectController.localDateToTimestamp(startDate);
+        this.estimatedStopDate = this.startDate+(timeFrame *2628000000L);
+    }
+
+    public LocalDate getEstimatedStopDateAsLocalDate() {
+        return ProjectController.timestampToLocalDate(estimatedStopDate);
+    }
+
+    public long getEstimatedStopDate() {
+        return estimatedStopDate;
+    }
+
+    public void setEstimatedStopDate(long estimatedStopDate) {
+        this.estimatedStopDate = estimatedStopDate;
+    }
+    public LocalDate getStartDateAsLocalDate() {
+        return ProjectController.timestampToLocalDate(startDate);
+    }
+
+    public int getTimeFrame() {
+        return timeFrame;
+    }
+
+    public void setTimeFrame(int timeFrame) {
+        this.timeFrame = timeFrame;
+        this.estimatedStopDate = this.startDate+(timeFrame *2628000000L);
     }
 
     public Client getClient() {
         return client;
     }
 
-    @XmlElement(name = "client")
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public FinancialIndicators getFinancialIndicators() {
+        return financialIndicators;
+    }
+
+    public void setFinancialIndicators(FinancialIndicators financialIndicators) {
+        this.financialIndicators = financialIndicators;
+    }
+
+    public AuthorityApproval getAuthorityApproval() {
+        return authorityApproval;
+    }
+
+    public void setAuthorityApproval(AuthorityApproval authorityApproval) {
+        this.authorityApproval = authorityApproval;
     }
 
     public List<Status> getStatuses() {
         return statuses;
     }
 
-    @XmlElement(name = "statuses")
     public void setStatuses(List<Status> statuses) {
         this.statuses = statuses;
     }
 
     public void addStatus(Status status){
+        if (statuses == null){
+            statuses = new ArrayList<>();
+        }
         statuses.add(status);
     }
 
-    public Status getCurrentStatus(long currentTimestamp) {
+    public Status getCurrentStatus(LocalDate currentDate) {
         return statuses.stream()
-                .filter(status -> status.getStartTime()<=currentTimestamp && status.getStopTime()>=currentTimestamp)
+                .filter(status -> (status.getStopDateAsLocalDate().isBefore(currentDate) && status.getStartDateAsLocalDate().isAfter(currentDate)) ||
+                                   status.getStopDateAsLocalDate().isEqual(currentDate) ||
+                                   status.getStartDateAsLocalDate().isEqual(currentDate))
                 .findFirst()
                 .get();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, description, startTimeStamp, stopTimeStamp);
-    }
+    public String createID(){
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
+        BigInteger number = new BigInteger(1, md.digest(LocalDateTime.now().toString().getBytes(StandardCharsets.UTF_8)));
+
+        // Convert message digest into hex value
+        StringBuilder hexString = new StringBuilder(number.toString(16));
+
+        // Pad with leading zeros
+        while (hexString.length() < 32)
+        {
+            hexString.insert(0, '0');
+        }
+
+        return hexString.toString();
+    }
 }
