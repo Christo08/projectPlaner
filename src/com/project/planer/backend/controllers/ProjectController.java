@@ -1,65 +1,82 @@
 package com.project.planer.backend.controllers;
 
-import com.project.planer.backend.Warppers.ProjectList;
-import com.project.planer.backend.data.Client;
-import com.project.planer.backend.data.Project;
-import com.project.planer.backend.data.Status;
+import com.project.planer.backend.data.*;
 
-import javax.xml.bind.JAXBException;
-import java.util.*;
+import java.time.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ProjectController {
-    private List<Project> projects;
+    private Map<String, Project> projects;
     private XmlFileController xmlFileController;
 
     public ProjectController(String pathToFolder) {
         xmlFileController = new XmlFileController(pathToFolder);
-        projects = new ArrayList<>();
         parseProjects();
     }
 
-    public Project getProject(int projectID) {
-        Project outputProject =projects.stream()
-                                       .filter(project -> project.getId()==projectID)
-                                       .findFirst()
-                                        .get();
-        return outputProject;
+    public Project getProject(String projectID) {
+        return projects.get(projectID);
     }
 
-    public Client getClientOfProject(int projectID){
+    public List<Project> getProjects(){
+        return new ArrayList<>(projects.values());
+    }
+
+    public Client getClientOfProject(String projectID){
         return getProject(projectID).getClient();
     }
 
-    public List<Status> getStatusOfProject(int projectID){
+    public List<Status> getStatusOfProject(String projectID){
         return getProject(projectID).getStatuses();
     }
 
-    public Status getCurrentStatusOfProject(int projectID){
-        return getProject(projectID).getCurrentStatus(System.currentTimeMillis() / 1000L);
+    public Status getCurrentStatusOfProject(String projectID){
+        return getProject(projectID).getCurrentStatus(LocalDate.now());
     }
 
-    public int createProject(String name, String description, long startTimeStamp, long stopTimeStamp, Client client){
-        Project newProject = new Project(name,description,startTimeStamp,stopTimeStamp,client);
-        projects.add(newProject);
-        return newProject.getId();
+    public String createProject(LocalDate startDate, int timeFrame, Client client, FinancialIndicators financialIndicators, AuthorityApproval authorityApproval){
+        Project project = new Project(startDate, timeFrame, client, financialIndicators,  authorityApproval);
+        xmlFileController.createNewProjectFile(project.getId());
+        projects.put(project.getId(), project);
+        return project.getId();
     }
 
-    public void createStatus(int projectID, String name, String description, long startTime, long stopTime){
-        getProject(projectID).addStatus(new Status(name, description, startTime, stopTime));
+    public void createStatus(String projectID, String name, String description, LocalDate startDate, LocalDate stopDate){
+        getProject(projectID).addStatus(new Status(name, description, startDate, stopDate));
     }
 
-    public void saveData()
-    {
-        ProjectList projectList = new ProjectList(projects);
-        try {
-            xmlFileController.saveProjects(projectList);
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        }
+    public void saveData(){
+        xmlFileController.saveProjects(new ArrayList<>(projects.values()));
     }
 
     private void parseProjects() {
-        projects = new ArrayList<>();
-        projects = xmlFileController.loadProjects().projects;
+        projects = new HashMap<>();
+        xmlFileController.loadProjects().stream().forEach(project -> projects.put(project.getId(), project));
+
+    }
+//platfrom
+    // not remove
+    // add all
+    // add to arraylist
+    public static void main(String[] args) {
+        ProjectController projectController= new ProjectController(args[0]);
+        Client client = new Client("Die plaas","Jan De Wet","Jan De Wet",
+                "012 345 6789","JanDeWet@DiePlass.com","123 street,\n Lynnwood,\n Pretoria,\n Gauteng,\n South Africa" );
+        FinancialIndicators financialIndicators = new FinancialIndicators(500000.0,  1000000.0);
+        AuthorityApproval authorityApproval = new AuthorityApproval("Eskom");
+        String id = projectController.createProject(LocalDate.now(), 12, client, financialIndicators, authorityApproval);
+        projectController.createStatus(id, "testing","",LocalDate.now(),LocalDate.now().plusMonths(12));
+        projectController.saveData();
+    }
+
+    public static LocalDate timestampToLocalDate(long timestamp){
+        return Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static long localDateToTimestamp(LocalDate date){
+        return  LocalDateTime.of(date, LocalTime.of(0,0,0)).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }

@@ -1,27 +1,35 @@
 package com.project.planer.backend.data;
 
-import javax.xml.bind.annotation.XmlElement;
+import com.project.planer.backend.controllers.ProjectController;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.time.LocalDate;
 
 @XmlRootElement(name = "status")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Status {
 
     private String name;
     private String description;
-    private long startTime;
-    private long stopTime;
+    private long startDate;
+    private long stopDate;
 
     public Status() {
     }
 
-    public Status(String name, String description, long startTime, long stopTime) {
+    public Status(String name, String description, long startDate, long stopDate) {
         this.name = name;
         this.description = description;
-        this.startTime = startTime;
-        this.stopTime = stopTime;
+        this.startDate = startDate;
+        this.stopDate = stopDate;
     }
 
-    @XmlElement(name = "name")
+    public Status(String name, String description, LocalDate startDate, LocalDate stopDate) {
+        this(name,description, ProjectController.localDateToTimestamp(startDate),ProjectController.localDateToTimestamp(stopDate));
+    }
+
     public String getName() {
         return name;
     }
@@ -30,7 +38,6 @@ public class Status {
         this.name = name;
     }
 
-    @XmlElement(name = "description")
     public String getDescription() {
         return description;
     }
@@ -39,21 +46,35 @@ public class Status {
         this.description = description;
     }
 
-    @XmlElement(name = "startTime")
-    public long getStartTime() {
-        return startTime;
+    public long getStartDate() {
+        return startDate;
     }
 
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
+    public LocalDate getStartDateAsLocalDate() {
+        return ProjectController.timestampToLocalDate(startDate);
     }
 
-    @XmlElement(name = "stopTime")
-    public long getStopTime() {
-        return stopTime;
+    public void setStartDate(long startDate) {
+        this.startDate = startDate;
     }
 
-    public void setStopTime(long stopTime) {
-        this.stopTime = stopTime;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = ProjectController.localDateToTimestamp(startDate);
+    }
+
+    public long getStopDate() {
+        return stopDate;
+    }
+
+    public LocalDate getStopDateAsLocalDate() {
+        return ProjectController.timestampToLocalDate(stopDate);
+    }
+
+    public void setStopDate(long stopDate) {
+        this.stopDate = stopDate;
+    }
+
+    public void setStopDate(LocalDate stopDate) {
+        this.stopDate = ProjectController.localDateToTimestamp(stopDate);
     }
 }
