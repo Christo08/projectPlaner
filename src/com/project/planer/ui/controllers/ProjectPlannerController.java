@@ -5,17 +5,22 @@ import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
-import java.util.concurrent.Executor;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -39,7 +44,8 @@ public class ProjectPlannerController {
     @FXML
     private BorderPane projectTimeLine;
 
-    private Alert failedToLoad;
+    private Alert failedToLoadProjects;
+    private Alert failedToLoadCreatorFxml;
     private Alert failedToSave;
     private Alert successfullySaved;
 
@@ -47,6 +53,8 @@ public class ProjectPlannerController {
 
     private ScheduledExecutorService savingExecutorService;
     private Runnable autoSavingRunnable;
+
+    private Stage projectCreatorStage;
 
     public ProjectPlannerController() {
         savingExecutorService = Executors.newSingleThreadScheduledExecutor();
@@ -58,13 +66,22 @@ public class ProjectPlannerController {
             }
         };
 
-        failedToLoad = new Alert(Alert.AlertType.ERROR);
-        failedToLoad.setTitle("Load failed");
-        failedToLoad.setHeaderText("Failed to load projects.");
+        initAlert();
+    }
+
+    private void initAlert() {
+
+        failedToLoadProjects = new Alert(Alert.AlertType.ERROR);
+        failedToLoadProjects.setTitle("Load failed");
+        failedToLoadProjects.setHeaderText("Failed to load projects.");
 
         failedToSave = new Alert(Alert.AlertType.ERROR);
         failedToSave.setTitle("Saved failed");
         failedToSave.setHeaderText("Failed to saved projects.");
+
+        failedToLoadCreatorFxml= new Alert(Alert.AlertType.ERROR);
+        failedToLoadCreatorFxml.setTitle("Load failed");
+        failedToLoadCreatorFxml.setHeaderText("Failed to load creator fxml.");
 
         successfullySaved = new Alert(Alert.AlertType.INFORMATION);
         successfullySaved.setTitle("Saved projects");
@@ -77,12 +94,33 @@ public class ProjectPlannerController {
             projectController = new ProjectController(absolutePathToDataFolder);
             savingExecutorService.scheduleWithFixedDelay(autoSavingRunnable,5,5, TimeUnit.MINUTES);
         } catch (Exception e) {
-            Platform.runLater(()->failedToLoad.show());
+             failedToLoadProjects.show();
             e.printStackTrace();
         }
     }
 
     public void createProject(ActionEvent actionEvent) {
+
+
+        try {
+            URL fxmlURL = Paths.get("C:\\Users\\User\\OneDrive\\Work\\PVSolution\\projectPlaner\\src\\com\\project\\planer\\ui\\fxml\\ProjectCreator.fxml").toUri().toURL();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(fxmlURL);
+            Parent projectCreatorParent = fxmlLoader.load();
+            ProjectCreatorController dialogController = fxmlLoader.getController();
+            dialogController.setMainController(this);
+
+            Scene projectCreatorScene = new Scene(projectCreatorParent, 725, 585);
+            projectCreatorStage = new Stage();
+            projectCreatorStage.initModality(Modality.APPLICATION_MODAL);
+            projectCreatorStage.setTitle("Project Creator");
+
+            projectCreatorStage.setScene(projectCreatorScene);
+            projectCreatorStage.showAndWait();
+        } catch (IOException e) {
+            failedToLoadCreatorFxml.show();
+            e.printStackTrace();
+        }
     }
 
     public void deleteProject(ActionEvent actionEvent) {
@@ -91,9 +129,10 @@ public class ProjectPlannerController {
     public void saveAll(ActionEvent actionEvent) {
         try {
             projectController.saveData();
-            Platform.runLater(()->successfullySaved.show());
+            successfullySaved.show();
         } catch (JAXBException e) {
-            Platform.runLater(()->failedToSave.show());
+            failedToSave.show();
+            e.printStackTrace();
         }
     }
 

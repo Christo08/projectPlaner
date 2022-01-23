@@ -86,7 +86,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="hasPrivateGridIntegrationCB" mnemonicParsing="false" text="private grid" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <CheckBox fx:id="hasPrivateGridIntegrationCB" disable="true" mnemonicParsing="false" text="private grid" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -96,12 +96,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <CheckBox fx:id="hasGeneratorIntegrationCB" mnemonicParsing="false" text="generator" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <CheckBox fx:id="hasGeneratorIntegrationCB" disable="true" mnemonicParsing="false" text="generator" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </CheckBox>
-                  <CheckBox fx:id="hasBatteryBlankIntegrationCB" mnemonicParsing="false" text="battery blank" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
+                  <CheckBox fx:id="hasBatteryBlankIntegrationCB" disable="true" mnemonicParsing="false" text="battery blank" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -211,7 +211,7 @@
                   <CheckBox fx:id="hasPrivateGridCB" alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <CheckBox fx:id="hasGeneratorCB" alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <CheckBox fx:id="hasBatteryBlankCB" alignment="CENTER" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Spinner fx:id="sizeOfPVPlaneSpn" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Spinner fx:id="sizeOfPVPlaneSpn" disable="true" editable="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <Spinner fx:id="sizeOfPrivateGridSpn" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                   <Spinner fx:id="sizeOfGeneratorSpn" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                   <Spinner fx:id="sizeOfBatteryBlankSpn" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="4" />
@@ -220,19 +220,19 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="Budget Cost:" GridPane.rowIndex="14">
+                  <Label text="Budget Cost (R):" GridPane.rowIndex="14">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
                   <Spinner fx:id="budgetCostSpn" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                   <Spinner fx:id="actualCostSpn" GridPane.columnIndex="3" GridPane.rowIndex="14" />
-                  <Label text="Actual Cost:" GridPane.columnIndex="2" GridPane.rowIndex="14">
+                  <Label text="Actual Cost (R):" GridPane.columnIndex="2" GridPane.rowIndex="14">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label text="Sell price:" GridPane.rowIndex="15">
+                  <Label text="Sell price (R):" GridPane.rowIndex="15">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -243,30 +243,40 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="cocIssieDateDP" GridPane.columnIndex="1" GridPane.rowIndex="17" />
-                  <Label text="COC issie date:" GridPane.rowIndex="17">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <DatePicker fx:id="cocIssieDateDP" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="17" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.rowIndex="17">
+                     <children>
+                        <Label text="COC issie date:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="hasCOCCertificateCB" mnemonicParsing="false" />
+                     </children>
+                  </HBox>
                   <Label text="COC certificate nr:" GridPane.columnIndex="2" GridPane.rowIndex="17">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="cocCertificateNrTxt" GridPane.columnIndex="3" GridPane.rowIndex="17" />
-                  <Label text="NRS 097 issie date:" GridPane.rowIndex="18">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <TextField fx:id="cocCertificateNrTxt" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="17" />
+                  <HBox alignment="CENTER_LEFT" spacing="5.0" GridPane.rowIndex="18">
+                     <children>
+                        <Label text="NRS 097 issie date:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="hasNRS097CertificateCB" mnemonicParsing="false" />
+                     </children>
+                  </HBox>
                   <Label text="NRS 097 certificate nr:" GridPane.columnIndex="2" GridPane.rowIndex="18">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="nrs097CertificateNrTxt" GridPane.columnIndex="3" GridPane.rowIndex="18" />
-                  <DatePicker fx:id="nrs097IssieDateDP" GridPane.columnIndex="1" GridPane.rowIndex="18" />
+                  <TextField fx:id="nrs097CertificateNrTxt" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="18" />
+                  <DatePicker fx:id="nrs097CertificateIssieDateDP" disable="true" GridPane.columnIndex="1" GridPane.rowIndex="18" />
                   <ComboBox fx:id="networkProvideCmb" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="19" />
                   <Label text="Network provide:" GridPane.rowIndex="19">
                      <font>
