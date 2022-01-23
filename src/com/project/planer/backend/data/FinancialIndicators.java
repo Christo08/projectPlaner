@@ -8,13 +8,13 @@ import java.util.Objects;
 @XmlRootElement(name = "financialIndicators")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FinancialIndicators {
-    private double budgetCost;
-    private double actualCost;
+    private double budgetCost = 0;
+    private double actualCost = 0;
 
-    private double sellPrice;
+    private double sellPrice = 0;
 
-    private double projectedProfit;
-    private double actualProfit;
+    private double projectedProfit = 0;
+    private double actualProfit = 0;
 
     public FinancialIndicators() {
     }

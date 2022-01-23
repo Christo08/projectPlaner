@@ -10,7 +10,7 @@
       <TableColumn prefWidth="75.0" text="End Time" />
       <TableColumn prefWidth="94.0" text="Current Status" />
       <TableColumn prefWidth="75.0" text="Client Name" />
-      <TableColumn prefWidth="105.0" text="Contant Number" />
+      <TableColumn prefWidth="105.0" text="Contact Number" />
       <TableColumn prefWidth="100.0" text="Local" />
       <TableColumn prefWidth="250.0" text="Description" />
   </columns>

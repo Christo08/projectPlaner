@@ -11,10 +11,10 @@ import java.time.LocalDate;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Status {
 
-    private String name;
-    private String description;
-    private long startDate;
-    private long stopDate;
+    private String name = "";
+    private String description = "";
+    private long startDate = 0;
+    private long stopDate = 0;
 
     public Status() {
     }

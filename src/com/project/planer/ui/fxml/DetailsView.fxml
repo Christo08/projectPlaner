@@ -69,7 +69,7 @@
                </rowConstraints>
                <children>
                   <Label text="Name:" GridPane.columnIndex="1" />
-                  <Label text="Contant Number:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Contact Number:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Address:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Company Name:" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                   <TextArea fx:id="clientAddressTxtA" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2" />
@@ -78,7 +78,7 @@
                   <Button fx:id="clientResetBtn" disable="true" mnemonicParsing="false" onAction="#resetClientDetails" text="Reset" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <Label text="Surname:" GridPane.columnIndex="3" />
                   <TextField fx:id="clientSurnameTxtF" GridPane.columnIndex="4" />
-                  <TextField fx:id="clientContantNumberTxtF" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="clientContactNumberTxtF" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <TextField fx:id="companyNameTxtF" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                </children>
                <padding>

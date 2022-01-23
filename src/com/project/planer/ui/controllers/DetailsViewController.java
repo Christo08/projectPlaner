@@ -50,7 +50,7 @@ public class DetailsViewController {
     private TextField clientSurnameTxtF;
 
     @FXML
-    private TextField clientContantNumberTxtF;
+    private TextField clientContactNumberTxtF;
 
     @FXML
     private TextField companyNameTxtF;
