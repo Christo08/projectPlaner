@@ -39,8 +39,32 @@ public class ProjectController {
         return getProject(projectID).getCurrentStatus(LocalDate.now());
     }
 
-    public String createProject(LocalDate startDate, int timeFrame, Client client, FinancialIndicators financialIndicators, AuthorityApproval authorityApproval){
-        Project project = new Project(startDate, timeFrame, client, financialIndicators,  authorityApproval);
+    public String createProject(boolean hasAPVPlane, double pvPlaneSize, boolean hasAPrivateGrid,
+                                double privateGridSize, boolean hasAGenerator, double generatorSize,
+                                boolean hasABatteryBlank, double batteryBlankSize, boolean needsIntegrationOfPVPlaneAndPrivateGrid,
+                                boolean needsIntegrationOfPVPlaneAndGenerator, boolean needsIntegrationOfPVPlaneAndBatteryBlank, long startDate,
+                                int timeFrame, Client client, FinancialIndicators financialIndicators, AuthorityApproval authorityApproval){
+        Project project = new Project(hasAPVPlane, pvPlaneSize, hasAPrivateGrid,
+        privateGridSize, hasAGenerator, generatorSize,
+        hasABatteryBlank, batteryBlankSize, needsIntegrationOfPVPlaneAndPrivateGrid,
+        needsIntegrationOfPVPlaneAndGenerator, needsIntegrationOfPVPlaneAndBatteryBlank, startDate,
+        timeFrame, client, financialIndicators, authorityApproval);
+        projects.put(project.getId(), project);
+        return project.getId();
+    }
+
+
+    public String createProject(Client client, FinancialIndicators financialIndicators, AuthorityApproval authorityApproval,
+                                boolean hasAPVPlane, double pvPlaneSize, boolean hasAPrivateGrid,
+                                double privateGridSize, boolean hasAGenerator, double generatorSize,
+                                boolean hasABatteryBlank, double batteryBlankSize, boolean needsIntegrationOfPVPlaneAndPrivateGrid,
+                                boolean needsIntegrationOfPVPlaneAndGenerator, boolean needsIntegrationOfPVPlaneAndBatteryBlank, LocalDate startDate,
+                                int timeFrame){
+        Project project = new Project(hasAPVPlane, (hasAPVPlane) ? pvPlaneSize: 0, hasAPrivateGrid,
+                (hasAPrivateGrid) ? privateGridSize : 0, hasAGenerator, (hasAGenerator) ? generatorSize : 0,
+                hasABatteryBlank, batteryBlankSize, needsIntegrationOfPVPlaneAndPrivateGrid,
+                needsIntegrationOfPVPlaneAndGenerator, needsIntegrationOfPVPlaneAndBatteryBlank, startDate,
+                timeFrame, client, financialIndicators, authorityApproval);
         projects.put(project.getId(), project);
         return project.getId();
     }
@@ -64,7 +88,15 @@ public class ProjectController {
     }
 
     public static long localDateToTimestamp(LocalDate date){
-        return  LocalDateTime.of(date, LocalTime.of(0,0,0)).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        if (date == null)
+            return 0;
+        else
+            return  LocalDateTime.of(date, LocalTime.of(0,0,0)).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    public void deleteProject(String id) {
+        projects.remove(id);
+        xmlFileController.delete(id);
     }
 
     public static void main(String[] args) throws JAXBException, FileNotFoundException {

@@ -62,4 +62,9 @@ public class XmlFileController {
 
         return projects;
     }
+
+    public void delete(String id) {
+        projectsFiles.get(id).delete();
+        projectsFiles.remove(id);
+    }
 }

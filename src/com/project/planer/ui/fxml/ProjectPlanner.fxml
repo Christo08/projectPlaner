@@ -11,7 +11,7 @@
        <HBox fx:id="controlsHBox" alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
            <children>
                <Button mnemonicParsing="false" onAction="#createProject" text="Create Project" />
-               <Button disable="true" mnemonicParsing="false" onAction="#deleteProject" text="Delete Project" />
+               <Button fx:id="deleteBtn" disable="true" mnemonicParsing="false" onAction="#deleteProject" text="Delete Project" />
                <Button mnemonicParsing="false" onAction="#saveAll" text="Save All" />
            </children>
            <padding>

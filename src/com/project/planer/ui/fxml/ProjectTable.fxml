@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 
-<TableView minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="850.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.project.planer.ui.controllers.ProjectTableController">
-  <columns>
-    <TableColumn prefWidth="75.0" text="Name" />
-      <TableColumn prefWidth="75.0" text="Start Time" />
-      <TableColumn prefWidth="75.0" text="End Time" />
-      <TableColumn prefWidth="94.0" text="Current Status" />
-      <TableColumn prefWidth="75.0" text="Client Name" />
-      <TableColumn prefWidth="105.0" text="Contact Number" />
-      <TableColumn prefWidth="100.0" text="Local" />
-      <TableColumn prefWidth="250.0" text="Description" />
-  </columns>
-</TableView>
+<ScrollPane fx:id="tableViewSP" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.planer.ui.controllers.ProjectTableController">
+   <content>
+      <TableView fx:id="tableTV" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="1560.0">
+         <columns>
+            <TableColumn fx:id="businessNameCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Business Name" />
+            <TableColumn fx:id="contantPersonCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Contant Person" />
+            <TableColumn fx:id="phoneNRCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="75.0" text="Phone nr" />
+            <TableColumn fx:id="pvPlaneSizeCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="PV Plane Size" />
+            <TableColumn fx:id="privateGridSizeCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Private Grid Size" />
+            <TableColumn fx:id="generatorSizeCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Generator Size" />
+            <TableColumn fx:id="batteryBlankSizeCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="115.0" text="Battery Blank Size" />
+            <TableColumn fx:id="intergrationCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="200.0" text="Intergration" />
+            <TableColumn fx:id="startDateCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="75.0" text="Start Date" />
+            <TableColumn fx:id="endDateCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="75.0" text="End Date" />
+            <TableColumn fx:id="budgetCostCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Budget Cost (R)" />
+            <TableColumn fx:id="actualCostCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Actual Cost (R)" />
+            <TableColumn fx:id="sellPriceCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Sell Price (R)" />
+            <TableColumn fx:id="projectedProfitCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="115.0" text="Projected Profit (R)" />
+            <TableColumn fx:id="actualProfitCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Actual Profit (R)" />
+            <TableColumn fx:id="provideCol" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" text="Provide" />
+         </columns>
+      </TableView>
+   </content>
+</ScrollPane>

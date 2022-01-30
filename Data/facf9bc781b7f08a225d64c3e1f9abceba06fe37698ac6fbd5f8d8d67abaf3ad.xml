@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project id="facf9bc781b7f08a225d64c3e1f9abceba06fe37698ac6fbd5f8d8d67abaf3ad">
+    <hasAPVPlane>true</hasAPVPlane>
+    <pvPlaneSize>2000.0</pvPlaneSize>
+    <hasAPrivateGrid>true</hasAPrivateGrid>
+    <privateGridSize>1000.0</privateGridSize>
+    <hasAGenerator>true</hasAGenerator>
+    <generatorSize>2000.0</generatorSize>
+    <hasABatteryBlank>true</hasABatteryBlank>
+    <batteryBlankSize>4000.0</batteryBlankSize>
+    <needsIntegrationOfPVPlaneAndPrivateGrid>true</needsIntegrationOfPVPlaneAndPrivateGrid>
+    <needsIntegrationOfPVPlaneAndGenerator>true</needsIntegrationOfPVPlaneAndGenerator>
+    <needsIntegrationOfPVPlaneAndBatteryBlank>true</needsIntegrationOfPVPlaneAndBatteryBlank>
+    <startDate>1640988000000</startDate>
+    <estimatedStopDate>1656756000000</estimatedStopDate>
+    <timeFrame>6</timeFrame>
+    <client>
+        <businessName>business</businessName>
+        <ownerName>Christo</ownerName>
+        <ownerSurname>Opperman</ownerSurname>
+        <contactPersonsName>Christo</contactPersonsName>
+        <contactPersonsSurname>Opperman</contactPersonsSurname>
+        <contactPhoneNumber>012 345 6789</contactPhoneNumber>
+        <email>ChristoOpperman@business.com</email>
+        <addressGPSCoordinates>123 test,
+test,
+Free state,
+RSA</addressGPSCoordinates>
+    </client>
+    <financialIndicators>
+        <budgetCost>2000.0</budgetCost>
+        <actualCost>3000.0</actualCost>
+        <sellPrice>4000.0</sellPrice>
+        <projectedProfit>2000.0</projectedProfit>
+        <actualProfit>1000.0</actualProfit>
+    </financialIndicators>
+    <authorityApproval>
+        <cocIssieDate>1736373600000</cocIssieDate>
+        <cocCertificateNumber>1234567890abcd</cocCertificateNumber>
+        <nrs097IssieDate>1736373600000</nrs097IssieDate>
+        <nrs097CertificateNumber>abccd1234567890</nrs097CertificateNumber>
+        <networkProvide>Eskom</networkProvide>
+        <dateOfApplicationHandedIn>1644962400000</dateOfApplicationHandedIn>
+        <dateOfApplicationReturned>1643839200000</dateOfApplicationReturned>
+        <dateOfPaymentReceived>1673388000000</dateOfPaymentReceived>
+        <expectedDateOfNetworkProvideApproval>1675166065408</expectedDateOfNetworkProvideApproval>
+        <actualDateOfNetworkProvideApproval>1643666400000</actualDateOfNetworkProvideApproval>
+        <dateOfNERSAApplication>1735682400000</dateOfNERSAApplication>
+        <expectedDateOfNERSAApproval>1736571432704</expectedDateOfNERSAApproval>
+        <actualDateOfNERSAApproval>1735682400000</actualDateOfNERSAApproval>
+    </authorityApproval>
+</project>

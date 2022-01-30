@@ -70,13 +70,29 @@ public class Project{
                    int timeFrame, Client client, FinancialIndicators financialIndicators, AuthorityApproval authorityApproval) {
         this(startDate, timeFrame, client, financialIndicators, authorityApproval);
         this.hasAPVPlane = hasAPVPlane;
-        this.pvPlaneSize = pvPlaneSize;
+        if (hasAPVPlane){
+            this.pvPlaneSize = pvPlaneSize;
+        } else{
+            this.pvPlaneSize = -1;
+        }
         this.hasAPrivateGrid = hasAPrivateGrid;
-        this.privateGridSize = privateGridSize;
+        if (hasAPrivateGrid){
+            this.privateGridSize = privateGridSize;
+        } else{
+            this.privateGridSize = -1;
+        }
         this.hasAGenerator = hasAGenerator;
-        this.generatorSize = generatorSize;
+        if (hasAGenerator){
+            this.generatorSize = generatorSize;
+        } else{
+            this.generatorSize = -1;
+        }
         this.hasABatteryBlank = hasABatteryBlank;
-        this.batteryBlankSize = batteryBlankSize;
+        if (hasABatteryBlank){
+            this.batteryBlankSize = batteryBlankSize;
+        } else{
+            this.batteryBlankSize = -1;
+        }
         this.needsIntegrationOfPVPlaneAndPrivateGrid = needsIntegrationOfPVPlaneAndPrivateGrid;
         this.needsIntegrationOfPVPlaneAndGenerator = needsIntegrationOfPVPlaneAndGenerator;
         this.needsIntegrationOfPVPlaneAndBatteryBlank = needsIntegrationOfPVPlaneAndBatteryBlank;
