@@ -30,7 +30,7 @@ public class Main extends Application {
         projectPlannerController = loader.getController();
         projectPlannerController.setAbsolutePathToDataFolder(absolutePathToDataFolder);
 
-        primaryStage.setScene(new Scene(root, 850, 675));
+        primaryStage.setScene(new Scene(root, 1500, 675));
         projectPlannerController.bindDimensions(primaryStage.getScene().widthProperty(),primaryStage.getScene().heightProperty());
         primaryStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST,this::saveAll);
         primaryStage.show();

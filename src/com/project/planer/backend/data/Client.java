@@ -3,14 +3,15 @@ package com.project.planer.backend.data;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Objects;
 
 @XmlRootElement(name = "client")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Client{
     private String businessName = "";
-    private String ownerNameSurname = "";
-    private String contactPersonsNameSurname = "";
+    private String ownerName = "";
+    private String ownerSurname = "";
+    private String contactPersonsName = "";
+    private String contactPersonsSurname = "";
     private String contactPhoneNumber = "";
     private String email = "";
     private String addressGPSCoordinates = "";
@@ -18,10 +19,12 @@ public class Client{
     public Client() {
     }
 
-    public Client(String businessName, String ownerNameSurname, String contactPersonsNameSurname, String contactPhoneNumber, String email, String addressGPSCoordinates) {
+    public Client(String businessName, String ownerName, String ownerSurname, String contactPersonsName, String contactPersonsSurname, String contactPhoneNumber, String email, String addressGPSCoordinates) {
         this.businessName = businessName;
-        this.ownerNameSurname = ownerNameSurname;
-        this.contactPersonsNameSurname = contactPersonsNameSurname;
+        this.ownerName = ownerName;
+        this.ownerSurname = ownerSurname;
+        this.contactPersonsName = contactPersonsName;
+        this.contactPersonsSurname = contactPersonsSurname;
         this.contactPhoneNumber = contactPhoneNumber;
         this.email = email;
         this.addressGPSCoordinates = addressGPSCoordinates;
@@ -35,20 +38,36 @@ public class Client{
         this.businessName = businessName;
     }
 
-    public String getOwnerNameSurname() {
-        return ownerNameSurname;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setOwnerNameSurname(String ownerNameSurname) {
-        this.ownerNameSurname = ownerNameSurname;
+    public String getContactPersonsSurname() {
+        return contactPersonsSurname;
     }
 
-    public String getContactPersonsNameSurname() {
-        return contactPersonsNameSurname;
+    public void setContactPersonsSurname(String contactPersonsSurname) {
+        this.contactPersonsSurname = contactPersonsSurname;
     }
 
-    public void setContactPersonsNameSurname(String contactPersonsNameSurname) {
-        this.contactPersonsNameSurname = contactPersonsNameSurname;
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getOwnerSurname() {
+        return ownerSurname;
+    }
+
+    public void setOwnerSurname(String ownerSurname) {
+        this.ownerSurname = ownerSurname;
+    }
+
+    public String getContactPersonsName() {
+        return contactPersonsName;
+    }
+
+    public void setContactPersonsName(String contactPersonsName) {
+        this.contactPersonsName = contactPersonsName;
     }
 
     public String getContactPhoneNumber() {

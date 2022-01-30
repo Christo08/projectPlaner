@@ -330,7 +330,7 @@
    <bottom>
       <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveBtn" disable="true" mnemonicParsing="false" onAction="#saveProject" text="Save" />
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveProject" text="Save" />
             <Button mnemonicParsing="false" onAction="#closeWindow" text="Close" />
          </children>
          <padding>
